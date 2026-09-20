@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="冲浪纸飞机折法图解 - 详细步骤教程，包含进阶折纸技巧、飞行原理分析及视频演示，教您折出滑翔距离最远的冲浪纸飞机。">
+    <meta name="keywords" content="冲浪纸飞机折法图解,纸飞机折法,纸飞机教程,滑翔纸飞机,纸飞机制作">
+    <title>冲浪纸飞机折法图解 - 经典滑翔纸飞机制作教程</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--accent-color), #2980b9);
+            border-radius: 4px;
+            transform: rotate(-45deg);
+            display: inline-block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Step-by-Step Guide */
+        .guide-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-item::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .step-image {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            border-radius: 8px;
+            margin-top: 1rem;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Tips Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .tip-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .header-container { flex-direction: column; gap: 1rem; }
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            纸飞机工坊
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">折法教程</a></li>
+                <li><a href="#">飞行技巧</a></li>
+                <li><a href="#">纸材推荐</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>冲浪纸飞机折法图解</h1>
+        <p>学会如何折叠出飞行稳定、滑翔距离远的冲浪纸飞机。适合新手入门及进阶练习，只需一张标准A4纸即可完成。</p>
+        <img src="https://picsum.photos/seed/plane1/800/400.jpg" alt="冲浪纸飞机飞行演示图" class="hero-image">
+    </div>
+</section>
+
+<main class="container">
+    <!-- 左侧：详细教程 -->
+    <section class="guide-section">
+        <h2 class="section-title">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            制作步骤详解
+        </h2>
+        
+        <div class="step-list">
+            <article class="step-item">
+                <h3 class="step-title">准备纸张</h3>
+                <p class="step-desc">选择一张平整、挺括的A4打印纸。纸张过软会导致飞行时机翼下垂，影响滑翔效果。将纸张横向放置（长边为长轴）。</p>
+                <img src="https://picsum.photos/seed/step1/600/300.jpg" alt="准备A4纸张" class="step-image">
+            </article>
+
+            <article class="step-item">
+                <h3 class="step-title">基础对折</h3>
+                <p class="step-desc">将纸张沿长边对折，形成一条清晰的中线（折痕）。然后将两个长边向中线对折，形成类似飞机的雏形，此时纸张厚度约为两层。</p>
+                <img src="https://picsum.photos/seed/step2/600/300.jpg" alt="基础对折步骤" class="step-image">
+            </article>
+
+            <article class="step-item">
+                <h3 class="step-title">制作机翼</h3>
+                <p class="step-desc">将折叠好的三角形上下两层分别再次对折，使机翼变窄。注意保持机翼对称，左右两侧的折痕应完全一致。</p>
+                <img src="https://picsum.photos/seed/step3/600/300.jpg" alt="制作机翼" class="step-image">
+            </article>
+
+            <article class="step-item">
+                <h3 class="step-title">调整翼尖</h3>
+                <p class="step-desc">这是制作冲浪纸飞机的关键步骤。将机翼的顶端向下轻轻折起约1-2厘米，形成后掠角。这能增加飞机的升力。</p>
+                <img src="https://picsum.photos/seed/step4/600/300.jpg" alt="调整翼尖角度" class="step-image">
+            </article>
+
+            <article class="step-item">
+                <h3 class="step-title">完成与调试</h3>
+                <p class="step-desc">展开机翼，确保机翼完全平直。检查机身是否弯曲，轻轻按压机身中段使其回弹。您的冲浪纸飞机已准备就绪。</p>
+                <img src="https://picsum.photos/seed/step5/600/300.jpg" alt="完成图" class="step-image">
+            </article>
+        </div>
+    </section>
+
+    <!-- 右侧：侧边栏 -->
+    <aside>
+        <div class="tip-card">
+            <h3>💡 飞行技巧</h3>
+            <p>投掷时保持手臂伸直，平稳向前推出，避免手腕下压。飞行过程中尽量保持水平，不要频繁调整角度。</p>
+        </div>
+
+        <div class="tip-card">
+            <h3>🛠️ 纸张选择</h3>
+            <p>建议使用80g-100g的铜版纸或道林纸。太轻的纸（如报纸）容易受风干扰，太厚的纸（如卡纸）飞行迟钝。</p>
+        </div>
+
+        <div class="tip-card">
+            <h3>⚠️ 常见问题</h3>
+            <p>如果飞机总是向左或向右偏转，请检查机翼后缘是否平整，或者调整其中一个机翼的折痕角度。</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Q: 需要多大的纸？</div>
+            <div class="faq-answer">A: 最标准的是A4纸，也可以使用A5纸增加飞行灵活性。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Q: 为什么飞不远？</div>
+            <div class="faq-answer">A: 通常是因为机翼角度过大或投掷力度不足。尝试减小机翼后掠角，并增加投掷速度。</div>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    <p>&copy; 2023 纸飞机工坊 - 纸上飞行，放飞梦想。本站所有教程仅供学习交流使用。</p>
+</footer>
+
+</body>
+</html>
