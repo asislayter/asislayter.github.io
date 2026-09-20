@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sans模拟器 - Undertale同人互动体验与角色扮演指南</title>
+    <meta name="description" content="Sans模拟器是一款基于Undertale世界观构建的网页互动角色扮演游戏。本站提供游戏玩法解析、彩蛋位置指南、存档技巧以及同人模组推荐，带你重温Sans的幽默与恐怖时刻。">
+    <meta name="keywords" content="sans模拟器,Undertale,undertale sans,网页游戏,同人游戏,恐怖游戏,像素风游戏">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-red: #ff3333;
+            --accent-yellow: #ffff00;
+            --accent-blue: #33ccff;
+            --border-color: #333;
+            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(13, 13, 13, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        nav a.active {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #0d0d0d 70%);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-yellow);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: #000;
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Game Preview */
+        .game-preview {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .preview-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .preview-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .preview-visual {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ASCII Art Simulation */
+        .ascii-box {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            font-size: 10px;
+            line-height: 10px;
+            color: var(--accent-yellow);
+            transform: scale(0.8);
+        }
+
+        /* Features Grid */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-blue);
+        }
+
+        .features {
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Gameplay Guide */
+        .guide {
+            background-color: var(--card-bg);
+            padding: 4rem 0;
+        }
+
+        .guide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .guide-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .guide-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guide-text li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .guide-text li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .guide-visual {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .stat-bar {
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-track {
+            height: 10px;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--accent-yellow);
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        details {
+            background-color: var(--card-bg);
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .faq-content {
+            padding: 0 1rem 1rem 1rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            margin: 0 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .game-preview, .guide-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none; /* Simplified mobile nav for demo */
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <span>💀</span> Sans Simulator
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#gameplay">玩法指南</a></li>
+                    <li><a href="#features">游戏特色</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Sans 模拟器：<br><span class="highlight">欢迎来到地下世界</span></h1>
+                <p>体验最真实的 Sans 角色扮演互动。在这里，幽默与恐怖并存，每一个选择都至关重要。准备好迎接你的审判了吗？</p>
+                <a href="#gameplay" class="cta-button">开始游戏</a>
+            </div>
+        </section>
+
+        <!-- Game Preview / Intro -->
+        <section class="container game-preview">
+            <div class="preview-text">
+                <h2>像素风格的经典重现</h2>
+                <p>Sans 模拟器是一款基于 Undertale 原作风格构建的纯网页互动体验。它不仅仅是一个简单的点击游戏，更是一个关于选择、记忆与灵魂的模拟器。</p>
+                <p>在游戏中，你将扮演一位穿越到地下世界的冒险者。你需要通过对话、小游戏和战斗来应对 Sans 的挑战。游戏完美复刻了原作中的经典台词与幽默感，同时加入了全新的支线剧情和隐藏结局。</p>
+                <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted);">
+                    <li>✅ 像素级视觉还原</li>
+                    <li>✅ 经典对话互动系统</li>
+                    <li>✅ 多重结局分支</li>
+                </ul>
+            </div>
+            <div class="preview-visual">
+                <div class="ascii-box">
+     ____   
+    |  _ \  
+    | |_) | 
+    |  _ <  
+    | |_) | 
+    |____/  
+   __|  |__ 
+  |  |__|  |
+  |________|
+        </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">核心特色</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">🃏</div>
+                        <h3>经典小游戏</h3>
+                        <p>重温 FIGHT 和 ACT 阶段的小游戏玩法，考验你的反应速度和策略选择。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🎭</div>
+                        <h3>幽默对话</h3>
+                        <p>Sans 不仅是强大的敌人，更是最好的朋友。体验他独特的冷幽默与吐槽风格。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>存档机制</h3>
+                        <p>支持本地存档功能，记录你的选择，解锁不同的结局和隐藏彩蛋。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">💀</div>
+                        <h3>恐怖模式</h3>
+                        <p>开启“审判模式”，Sans 的眼神将变得深邃，游戏难度大幅提升。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gameplay Guide -->
+        <section id="gameplay" class="guide">
+            <div class="container">
+                <h2 class="section-title">玩法指南</h2>
+                <div class="guide-content">
+                    <div class="guide-text">
+                        <h3>如何开始你的旅程？</h3>
+                        <p>进入游戏后，你将首先与 Sans 面对面。此时你可以选择 <strong>ACT</strong>（行动）或 <strong>FIGHT</strong>（攻击）。</p>
+                        <ul>
+                            <li><strong>策略建议：</strong> 在早期阶段，不要急于攻击。尝试通过对话来降低 Sans 的攻击欲望。</li>
+                            <li><strong>小游戏技巧：</strong> 在战斗的休息阶段，Sans 会发起小游戏挑战。保持冷静，不要漏掉任何一个指令。</li>
+                            <li><strong>关键道具：</strong> 收集地下的神秘物品，它们可能在关键时刻改变对话走向。</li>
+                            <li><strong>结局解锁：</strong> 尝试达成“仁慈结局”或“中立结局”，以发现隐藏的剧情彩蛋。</li>
+                        </ul>
+                    </div>
+                    <div class="guide-visual">
+                        <div class="stat-bar">
+                            <div class="stat-label"><span>LUCK (运气)</span><span>50%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width: 50%;"></div></div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label"><span>INTEGRITY (正直)</span><span>30%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width: 30%; background-color: var(--accent-red);"></div></div>
+                        </div>
+                        <div class="stat-bar">
+                            <div class="stat-label"><span>KNOWLEDGE (知识)</span><span>75%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width: 75%; background-color: var(--accent-blue);"></div></div>
+                        </div>
+                        <div style="margin-top: 2rem; text-align: center; color: var(--accent-yellow); font-family: monospace; font-size: 0.9rem;">
+                            > WAITING FOR INPUT...<br>
+                            > CLICK TO ATTACK
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="container">
+            <h2 class="section-title">常见问题 (FAQ)</h2>
+            <div class="faq">
+                <details>
+                    <summary>Sans 模拟器需要下载吗？</summary>
+                    <div class="faq-content">
+                        不需要。Sans 模拟器是一个纯网页游戏，你可以直接在浏览器中打开 HTML 文件即可游玩，无需安装任何软件。
+                    </div>
+                </details>
+                <details>
+                    <summary>游戏支持移动端吗？</summary>
+                    <div class="faq-content">
+                        是的，游戏已针对触摸屏进行了优化，支持在手机和平板上流畅运行。
+                    </div>
+                </details>
+                <details>
+                    <summary>如何获得“仁慈结局”？</summary>
+                    <div class="faq-content">
+                        在面对 Sans 时，选择不攻击并尽可能多地使用 ACT 选项，并在小游戏环节保持连胜，即可解锁仁慈结局。
+                    </div>
+                </details>
+                <details>
+                    <summary>游戏完全免费吗？</summary>
+                    <div class="faq-content">
+                        是的，Sans 模拟器完全免费，所有功能均可免费体验。
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">游戏规则</a>
+                <a href="#">免责声明</a>
+                <a href="#">联系作者</a>
+            </div>
+            <p>&copy; 2023 Sans Simulator Fan Site. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">本站为同人作品，Undertale 及相关角色版权归 Toby Fox 所有。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互逻辑：点击开始按钮滚动到玩法区域
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            if(e.target.getAttribute('href') === '#gameplay') {
+                e.preventDefault();
+                document.getElementById('gameplay').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // 模拟进度条动画
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.progress-fill');
+            bars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+  </html>
